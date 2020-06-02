@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+	<model name="camera_stand">
+		<static>true</static>
+		<link name="stand">
+			<pose>0 0 0.48 0 0 0</pose>
+			<collision name="pole">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.04 0.04 0.96</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<box>
+						<size>0.04 0.04 0.96</size>
+					</box>
+				</geometry>
+			</visual>
+			<!--<collision name="slab">
+				<pose>0 0 -1.07 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.15 0.15 0.04</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="visual3">
+				<geometry>
+					<box>
+						<size>0.15 0.15 0.04</size>
+					</box>
+				</geometry>
+			</visual>-->
+		</link>
+
+		<link name="depth_camera">
+			<pose>0 0 1.02 0.0 1.57 0.0</pose> <!--0.37 0.45 1.44-->
+			<collision name="collision">				
+				<geometry>
+					<box>
+						<size>0.045 0.045 0.045</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<box>
+						<size>0.045 0.045 0.045</size>
+					</box>
+				</geometry>
+			</visual>
+			<sensor name="DepCamera" type="depth">
+				<camera>
+					<horizontal_fov>1.5</horizontal_fov>
+					<image>
+						<width>320</width>
+						<height>320</height>
+					</image>
+					<clip>
+						<near>0.01</near>
+						<far>1.4</far>
+					</clip>
+				</camera>
+				<always_on>true</always_on>
+				<update_rate>200</update_rate>
+				<visualize>true</visualize>
+				<plugin name='depthCamera' filename='libgazebo_ros_depth_camera.so'>
+					<robotNamespace>camera_stand</robotNamespace>
+					<focalLength>171.748184</focalLength>
+					<alwaysOn>true</alwaysOn>
+					<updateRate>30</updateRate>
+					<imageTopicName>/DepCamera/image_raw</imageTopicName>
+					<depthImageTopicName>/DepCamera/depth/image_raw</depthImageTopicName>
+					<cameraInfoTopicName>/DepCamera/depth/camera_info</cameraInfoTopicName>
+					<depthImageInfoTopicName>/DepCamera/depth/camera_info</depthImageInfoTopicName>
+					<depthImageCameraInfoTopicName>/DepCamera/depth_image_camera_info</depthImageCameraInfoTopicName>
+					<pointCloudTopicName>/DepCamera/depth/points</pointCloudTopicName>
+					<cameraName>DepCamera</cameraName>
+					<frameName>camera_frame</frameName>
+				</plugin>
+			</sensor>
+		</link>
+
+		<joint name="fixed_joint" type="revolute">
+			<pose>0 0 0.99 0 0 0</pose>
+			<child>depth_camera</child>
+			<parent>stand</parent>
+			<axis>
+				<limit>
+					<lower>0</lower>
+					<upper>0</upper>
+				</limit>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+
+	</model>
+</sdf>

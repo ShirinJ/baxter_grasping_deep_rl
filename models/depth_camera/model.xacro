@@ -1,0 +1,70 @@
+<robot name="depth_camera" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	  <link name="rr_depth_camera">
+	    <inertial>
+	      <origin xyz="0.02 0.02 0.02" />
+	      <mass value="0.5" />
+	      <inertia  ixx="0.5" ixy="0.0"  ixz="0.0"  iyy="0.5"  iyz="0.0"  izz="0.5" />
+	    </inertial>
+	    <visual>
+	      <origin xyz="0.02 0.02 0.02"/>
+	      <geometry>
+		<box size="0.04 0.04 0.04" />
+	      </geometry>
+	    </visual>
+	    <collision>
+	      <origin xyz="0.02 0.02 0.02"/>
+	      <geometry>
+		<box size="0.04 0.04 0.04" />
+	      </geometry>
+	    </collision>
+	  </link>
+	  <gazebo>
+	    <material>Gazebo/Blue</material>
+	     <mu1>1000</mu1>
+	     <mu2>1000</mu2>
+	 <sensor type="depth" name="rr_depth_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="rr_depth_camera">
+        <horizontal_fov>1.221730476</horizontal_fov>  <!-- 70 deg -->
+        <image>
+          <width>800</width>  <!-- 160 -->
+          <height>600</height> <!-- 120 -->
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>7.0</far>         <!-- outdoor down to 3m depending on luminosity -->
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+
+      <plugin name="kinect_depth_optical_frame_controller" filename="libgazebo_ros_openni_kinect.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30.0</updateRate>
+        <cameraName>depth_camera</cameraName>
+        <imageTopicName>/depth_camera/image_raw</imageTopicName>
+        <cameraInfoTopicName>/cameras/depth/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>/cameras/depth/image_raw</depthImageTopicName>
+        <depthImageInfoTopicName>/depth_camera/depth/camera_info</depthImageInfoTopicName>
+        <depthImageCameraInfoTopicName>/depth_camera/camera_info</depthImageCameraInfoTopicName>
+        <pointCloudTopicName>/depth_camera/depth/points</pointCloudTopicName>
+        <frameName>kinect_depth_optical_frame</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <distortionK1>0</distortionK1>
+        <distortionK2>0</distortionK2>
+        <distortionK3>0</distortionK3>
+        <distortionT1>0</distortionT1>
+        <distortionT2>0</distortionT2>
+        <CxPrime>0</CxPrime>
+        <Cx>0</Cx>
+        <Cy>0</Cy>
+        <focalLength>0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>      
+    </sensor>
+	  </gazebo>
+</robot>
