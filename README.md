@@ -67,4 +67,4 @@ If you use this project in your research or wish to refer to the baseline result
 ```
 
 ## Acknowledgements
-Based on baxter_dqn_ros (https://github.com/powertj/baxter_dqn.git)baxter_grasping_drl
+Based on [baxter_dqn_ros](https://github.com/powertj/baxter_dqn.git)
