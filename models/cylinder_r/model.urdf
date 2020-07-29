@@ -29,7 +29,7 @@
 				<collision>cylinder_collision</collision>
 			</contact>
 			<plugin name="cylinder_bumper" filename="libgazebo_ros_bumper.so">
-				<bumperTopicName>cylinder_contact1</bumperTopicName>
+				<bumperTopicName>object_contact1</bumperTopicName>
 				<frameName>cylinder</frameName>
 			</plugin>
 		</sensor>
