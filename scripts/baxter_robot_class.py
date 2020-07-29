@@ -87,7 +87,7 @@ class BaxterManipulator(object):
         object_x = 0.625 + random.uniform(-0.1, 0.13)
         object_y = 0.7975 + random.uniform(-0.1, 0.13)
         # Type of object
-        self._object_type = random.randint(1, 3) * 3 - 1
+        self._object_type = random.randint(1, 9)
         modelstate.model_name = "object" + str(self._object_type)
 
         # Place object for pick-up
