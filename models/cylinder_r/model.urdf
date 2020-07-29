@@ -22,5 +22,16 @@
     <material>Gazebo/Red</material>
      <mu1>1000</mu1>
      <mu2>1000</mu2>
+     <sensor name="cylinder_sensor" type="contact">
+			<always_on>false</always_on>
+			<update_rate>0.1</update_rate>
+			<contact>
+				<collision>cylinder_collision</collision>
+			</contact>
+			<plugin name="cylinder_bumper" filename="libgazebo_ros_bumper.so">
+				<bumperTopicName>cylinder_contact1</bumperTopicName>
+				<frameName>cylinder</frameName>
+			</plugin>
+		</sensor>
   </gazebo>
 </robot>

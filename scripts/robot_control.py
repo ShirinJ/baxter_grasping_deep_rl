@@ -111,7 +111,6 @@ def delete_gazebo_models():
 		delete_model = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
 		resp_delete = delete_model("cafe_table")
 		resp_delete = delete_model("camera_rack")
-		# resp_delete = delete_model("depth_camera")
 		resp_delete = delete_model("object")
 	except rospy.ServiceException, e:
 		rospy.loginfo("Delete Model service call failed: {0}".format(e))

@@ -16,7 +16,7 @@ from gazebo_msgs.srv import SetModelState
 
 from std_msgs.msg import (
     UInt16,
-    String,_
+    String,
     Int8
 )
 
@@ -257,8 +257,7 @@ class BaxterManipulator(object):
     def pick_up_object(self):
         obj_move = 0
         self.move_vertical("d")
-        obj_contact_topic = "object_contact" + str(
-            self._object_type)  # object_type needs to correspond with topic name in model urdf
+        obj_contact_topic = "object_contact" + str(self._object_type)  # object_type needs to correspond with topic name in model urdf
         obj_contact = rospy.wait_for_message(obj_contact_topic, ContactsState)
         if self.object_v != 0:
             obj_move = 1
