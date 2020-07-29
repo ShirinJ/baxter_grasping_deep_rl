@@ -168,8 +168,7 @@ end
 
 -- Min and max reward
 function BaxterEnv:getRewardSpec()
-	return 0, 0.01, -0.015, 0.1, -0.1, 1, -1
-	-- erroreous, correct dir, wrong dir, contact obj, failed pick up, success, timeout
+	return 0, 1, -1, 10, -10
 end
 
 
@@ -194,7 +193,7 @@ function BaxterEnv:step(action)
 	-- This is because unsuccesful attempts often knock the block away
 	-- making it impossible to pickup again
 	-- 1-6 control +ve or -ve for 3DOF - shoulder, wrist and elbow
-	
+
 	if action == 0 then
 		terminal = true
 		step = 1
@@ -205,14 +204,16 @@ function BaxterEnv:step(action)
 	-- get next message
 	self:msgToImg()
 	-- Check task condition
-	if step == 30 then
-		terminal = true
-		step = 1
-		reward = -1
-	else
+	if task == 1 or task == 10 or task == -1 then
 		reward = task
+	else
+		if step == 30 then
+			terminal = true
+			step = 1
+			reward = -10
+		end
 	end
-	
+
 	step = step + 1
 	self.signal = reward --testing use
 	return reward, self.screen, terminal
@@ -229,4 +230,3 @@ function BaxterEnv:_close()
 end
 
 return BaxterEnv
-

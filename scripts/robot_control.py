@@ -125,9 +125,7 @@ def main():
 	# Note that the models reference is the /world frame
 	baxter_manipulator._reset()
 	load_gazebo_models()
-	# DepthMapRetriever = DepthMap_retriever()
 	baxter_manipulator.listener()
-	# DepthMapRetriever.listener()
 	# Remove models from the scene on shutdown
 	rospy.on_shutdown(delete_gazebo_models())	
 	rospy.on_shutdown(baxter_manipulator.clean_shutdown())
