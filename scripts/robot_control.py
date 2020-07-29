@@ -29,7 +29,7 @@ def load_gazebo_models():
 	table_reference_frame = "world"
 	object_reference_frame = "world"
 	
-	model_path = rospkg.RosPack().get_path('baxter_grasping_deep_rl')+"/models/"
+	model_path = rospkg.RosPack().get_path('baxter_grasping_drl')+"/models/"
 	
 	rack_pose=Pose(position=Point(x=0.9, y=0.87, z=0.0))
 
@@ -119,7 +119,7 @@ def delete_gazebo_models():
 def main():
 
 	print("Initializing node... ")
-	rospy.init_node("baxter_grasping_deep_rl")
+	rospy.init_node("baxter_grasping_drl")
 	baxter_manipulator = BaxterManipulator()
 	# Load Gazebo Models via Spawning Services
 	# Note that the models reference is the /world frame

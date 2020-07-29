@@ -16,7 +16,7 @@ from gazebo_msgs.srv import SetModelState
 
 from std_msgs.msg import (
     UInt16,
-    String,
+    String,_
     Int8
 )
 
