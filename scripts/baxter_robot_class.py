@@ -261,11 +261,11 @@ class BaxterManipulator(object):
         obj_contact = rospy.wait_for_message(obj_contact_topic, ContactsState)
         if self.object_v != 0:
             obj_move = 1
-        time.sleep(0.1)
+        time.sleep(0.2)
         self.grip_left.close()
         if self.object_v != 0:
             obj_move = 1
-        time.sleep(0.1)
+        time.sleep(0.5)
         self.move_vertical("u")
         if self.object_v != 0:
             obj_move = 1
