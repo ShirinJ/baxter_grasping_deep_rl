@@ -169,6 +169,7 @@ end
 -- Min and max reward
 function BaxterEnv:getRewardSpec()
 	return 0, 1, -1, 10, -10
+--local, partial pick, unsuccessful attempt, successful pick, no action and max number of steps reached
 end
 
 
