@@ -22,5 +22,16 @@
     <material>Gazebo/Blue</material>
      <mu1>1000</mu1>
      <mu2>1000</mu2>
+     <sensor name="block_sensor" type="contact">
+			<always_on>false</always_on>
+			<update_rate>0.1</update_rate>
+			<contact>
+				<collision>block_collision</collision>
+			</contact>
+			<plugin name="block_bumper" filename="libgazebo_ros_bumper.so">
+				<bumperTopicName>object_contact7</bumperTopicName>
+				<frameName>block</frameName>
+			</plugin>
+		</sensor>
   </gazebo>
 </robot>
